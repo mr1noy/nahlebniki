@@ -308,6 +308,71 @@
     addEventListener('keydown', e => { if (e.key === 'Escape' && !mnav.hidden) { setNav(false); burger.focus(); } });
   }
 
+
+  /* ---------- билеты: ширина корешка по содержимому ---------- */
+  const fitStubs = () => document.querySelectorAll('.ticket').forEach(t => {
+    const st = t.querySelector('.ticket__stub'); if (!st) return;
+    t.style.removeProperty('--stub'); st.style.width = 'max-content';
+    const w = Math.ceil(st.getBoundingClientRect().width); st.style.width = '';
+    const min = matchMedia('(max-width:760px)').matches ? 104 : 118;
+    t.style.setProperty('--stub', Math.max(min, w) + 'px');
+  });
+  document.fonts.ready.then(fitStubs); addEventListener('resize', fitStubs);
+
+  /* ---------- архив афиш: лента едет сама, её можно тянуть мышью ---------- */
+  document.querySelectorAll('.wall__row').forEach((row, ri) => {
+    const track = row.querySelector('.wall__track');
+    const dir = row.classList.contains('wall__row--rev') ? 1 : -1;
+    const auto = 32 * dir;                 // px/с — фоновая скорость
+    let x = 0, v = auto, half = 0, drag = false, lastX = 0, lastT = 0, hover = false, pid = null;
+    const measure = () => { half = track.scrollWidth / 2; };
+    measure(); addEventListener('resize', measure); addEventListener('load', measure);
+    const wrap = () => { if (!half) return; while (x <= -half) x += half; while (x > 0) x -= half; };
+    let prev = performance.now();
+    (function tick(now) {
+      const dt = Math.min(.05, (now - prev) / 1000); prev = now;
+      if (!drag) {
+        const target = hover ? 0 : (reduce ? 0 : auto);
+        v += (target - v) * Math.min(1, dt * 2.2);     // инерция плавно возвращается к фоновой скорости
+        x += v * dt;
+      }
+      wrap(); track.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
+      requestAnimationFrame(tick);
+    })(prev);
+    row.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hover = true; });
+    row.addEventListener('pointerleave', () => { hover = false; });
+    row.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      drag = true; pid = e.pointerId; lastX = e.clientX; lastT = performance.now(); v = 0;
+      row.setPointerCapture(pid); row.classList.add('is-drag');
+    });
+    row.addEventListener('pointermove', e => {
+      if (!drag) return;
+      const now = performance.now(), dx = e.clientX - lastX, dt = Math.max(1, now - lastT) / 1000;
+      x += dx; v = v * .6 + (dx / dt) * .4;            // сглаженная скорость для броска
+      lastX = e.clientX; lastT = now;
+    });
+    const end = () => {
+      if (!drag) return; drag = false; row.classList.remove('is-drag');
+      if (performance.now() - lastT > 80) v = 0;       // отпустили без движения — без броска
+      v = Math.max(-2600, Math.min(2600, v));
+    };
+    row.addEventListener('pointerup', end); row.addEventListener('pointercancel', end);
+  });
+
+  /* ---------- карта: метка-логотип привязана к координатам бара ---------- */
+  const mapEl = $('#map');
+  if (mapEl && window.L) {
+    const pos = [54.778397, 32.047997];
+    const map = L.map(mapEl, { center: pos, zoom: 16, scrollWheelZoom: false, zoomControl: true, attributionControl: true });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">участники OpenStreetMap</a>'
+    }).addTo(map);
+    L.marker(pos, { icon: L.divIcon({ className: 'nah-icon', html: '<span class="nah-pin">НА<span class="x">Х</span></span>', iconSize: [0, 0] }), keyboard: false, title: 'Нахлебники, Дзержинского, 4' }).addTo(map);
+    mapEl.addEventListener('click', () => map.scrollWheelZoom.enable(), { once: true });
+  }
+
   /* появление блоков при скролле */
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: .25 });
   document.querySelectorAll('.combo, .lunch, .app').forEach(el => io.observe(el));

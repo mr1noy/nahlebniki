@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Нахлебники — первый сэндвич-шоп в Смоленске</title>
+<title>Нахлебники — первый сэндвич-шоп в Смоленске</title>
 <meta name="description" content="Сэндвичи на фокаччо, своё пиво на кране, игра «5 секунд». Смоленск, Дзержинского, 4. Каждый день 12:00–23:00.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23DBFF00'/%3E%3Cpath d='M18 14h8l6 13 6-13h8l-10 18 10 18h-8l-6-13-6 13h-8l10-18z M14 30h36v5H14z' fill='%230E0E0E'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="is-loading">
@@ -27,11 +28,11 @@
   <div class="loader__frame">
     <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
     <div class="loader__time" id="loaderTime">00.00</div>
-    <div class="loader__goal">цель — ровно <b>05.00</b></div>
+    <div class="loader__goal">цель — ровно <b>05.00</b></div>
   </div>
   <div class="loader__verdict" id="loaderVerdict" hidden>
     <span class="plate plate--lime">Вот так надо.</span>
-    <span class="plate plate--ink">А ты сможешь?</span>
+    <span class="plate plate--ink">А ты сможешь?</span>
   </div>
   <div class="loader__foot">
     <span>Дзержинского, 4 · Смоленск</span>
@@ -59,10 +60,10 @@
   <div class="hud__right">
     <span class="hud__k" id="hudTemp">погода…</span>
     <span class="hud__v hud__v--sm" id="hudTempNote">&nbsp;</span>
-    <span class="hud__k">на кране: <b id="hudTap">Лагер-НАХ</b></span>
+    <span class="hud__k">на кране: <b id="hudTap">Лагер-НАХ</b></span>
   </div>
   <div class="hud__bottom">
-    <button class="hud__play" id="hudPlay" type="button"><span class="dot"></span>Сыграть в 5 сек <kbd>Пробел</kbd></button>
+    <button class="hud__play" id="hudPlay" type="button"><span class="dot"></span>Сыграть в 5 сек <kbd>Пробел</kbd></button>
     <span class="hud__addr">Дзержинского, 4 · каждый день 12–23</span>
     <span class="hud__social"><a href="https://t.me/nahlebniki_sm" target="_blank" rel="noopener">TG</a><a href="https://vk.com/club232301704" target="_blank" rel="noopener">VK</a><a href="https://www.instagram.com/nahlebniki_smolensk/" target="_blank" rel="noopener">IG</a></span>
   </div>
@@ -88,7 +89,7 @@
     <h1 class="word" aria-label="Нахлебники">
       <span class="word__row" aria-hidden="true"><span>Н</span><span>А</span><span class="x">Х</span><span>Л</span><span>Е</span><span>Б</span><span>Н</span><span>И</span><span>К</span><span>И</span></span>
     </h1>
-    <div class="word__sub" aria-hidden="true">Сэндвич шоп <span>· с 2026 ·</span> Смоленск</div>
+    <div class="word__sub" aria-hidden="true">Сэндвич шоп <span>· с 2026 ·</span> Смоленск</div>
 
     <!-- парящие объекты: data-depth — сила параллакса -->
     <img class="obj obj--sandwich" data-depth="0.9" src="assets/obj/sandwich.webp" alt="" draggable="false">
@@ -113,20 +114,20 @@
     <figure class="polaroid" data-depth="0.2">
       <span class="tape"></span>
       <img src="assets/img/polaroid_s2.jpg" alt="Сэндвич №2 с мортаделлой, фисташковым кремом и яйцом">
-      <figcaption>#2 · хит · 480 ₽</figcaption>
+      <figcaption>#2 · хит · 480 ₽</figcaption>
     </figure>
   </div>
 
   <div class="hero__copy">
     <p class="plates">
       <span class="plate plate--lime"><span class="marker-circle">Первый</span> сэндвич-шоп</span><br>
-      <span class="plate plate--ink">в Смоленске.</span><br>
+      <span class="plate plate--ink">в Смоленске.</span><br>
       <span class="plate plate--paper">Брони нет. Собаки можно.</span>
     </p>
     <div class="ctas">
       <a class="ticket ticket--lime" href="#menu">
         <span class="ticket__main">Смотреть меню</span>
-        <span class="ticket__stub">№ 0001<br>7 сэндвичей</span>
+        <span class="ticket__stub">№ 0001<br>7 сэндвичей</span>
       </a>
       <a class="ticket ticket--ink" href="https://eda.yandex.ru/restaurant/naxlebniki" target="_blank" rel="noopener">
         <span class="ticket__main">Заказать</span>
@@ -142,8 +143,8 @@
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
-      <span>Брони нет</span><i>✱</i><span>Пиво в наличии</span><i>✱</i><span>Сэндвич — твой лучший друг</span><i>✱</i><span>Можно с собачками</span><i>✱</i><span>Поймай 05.00 — ешь бесплатно</span><i>✱</i>
-      <span>Брони нет</span><i>✱</i><span>Пиво в наличии</span><i>✱</i><span>Сэндвич — твой лучший друг</span><i>✱</i><span>Можно с собачками</span><i>✱</i><span>Поймай 05.00 — ешь бесплатно</span><i>✱</i>
+      <span>Брони нет</span><i>✱</i><span>Пиво в наличии</span><i>✱</i><span>Сэндвич — твой лучший друг</span><i>✱</i><span>Можно с собачками</span><i>✱</i><span>Поймай 05.00 — ешь бесплатно</span><i>✱</i>
+      <span>Брони нет</span><i>✱</i><span>Пиво в наличии</span><i>✱</i><span>Сэндвич — твой лучший друг</span><i>✱</i><span>Можно с собачками</span><i>✱</i><span>Поймай 05.00 — ешь бесплатно</span><i>✱</i>
     </div>
   </div>
 </section>
@@ -153,9 +154,9 @@
   <svg class="tear-top" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V30L31 18 58 40 92 21 121 36 150 14 183 33 212 22 244 45 271 25 303 38 331 16 362 34 394 20 423 43 455 24 484 37 513 17 545 35 574 23 606 44 635 27 664 39 696 15 725 32 757 21 786 42 815 25 847 36 876 19 908 33 937 22 966 45 998 26 1027 37 1059 16 1088 34 1117 21 1149 43 1178 24 1210 38 1239 18 1268 35 1300 22 1329 41 1361 26 1390 36 1440 20V60Z"/></svg>
 
   <header class="menu__head">
-    <span class="kicker kicker--ink">меню · 7 сэндвичей · есть комбо с картошкой</span>
+    <span class="kicker kicker--ink">меню · 7 сэндвичей · есть комбо с картошкой</span>
     <h2 class="menu__title">Сэндвичи <span class="menu__sticker">#1–#7</span></h2>
-    <p class="menu__lede"><span class="plate plate--ink">Заказывай по номеру.</span> <span class="plate plate--lime">«Мне двойку и пиво».</span></p>
+    <p class="menu__lede"><span class="plate plate--ink">Заказывай по номеру.</span> <span class="plate plate--lime">«Мне двойку и пиво».</span></p>
   </header>
 
   <div class="menu__scroll" style="--n:7">
@@ -165,12 +166,12 @@
       <div class="menu__slides">
       <article class="sw is-active" data-i="0" aria-label="Сэндвич №1">
         <div class="sw__info">
-          <p class="sw__say"><span>Для любителей мяса</span></p>
+          <p class="sw__say"><span>Для любителей мяса</span></p>
           <h3 class="sw__name">Буженина, маринованный огурец, барбекю-соус</h3>
-          <p class="sw__desc">Очень много буженины собственного приготовления, три соуса, свежий и маринованный огурчики, маринованный лук, салат — и ничего лишнего.</p>
+          <p class="sw__desc">Очень много буженины собственного приготовления, три соуса, свежий и маринованный огурчики, маринованный лук, салат — и ничего лишнего.</p>
           <div class="sw__meta">
-            <span class="sw__price">590 ₽</span>
-            <span class="sw__weight">330 г</span>
+            <span class="sw__price">590 ₽</span>
+            <span class="sw__weight">330 г</span>
             <a class="sw__order" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Заказать №1 →</a>
           </div>
         </div>
@@ -181,10 +182,10 @@
         <div class="sw__info">
           <p class="sw__say"><span>Визитная карточка</span><span class="badge badge--hit">хит</span></p>
           <h3 class="sw__name">Мортаделла, фисташковый крем, яйцо</h3>
-          <p class="sw__desc">Фокачча с кремом из фисташкового урбеча, много мортаделлы, жареное яйцо, кислый огурец, маринованный лук и капля мёда.</p>
+          <p class="sw__desc">Фокачча с кремом из фисташкового урбеча, много мортаделлы, жареное яйцо, кислый огурец, маринованный лук и капля мёда.</p>
           <div class="sw__meta">
-            <span class="sw__price">480 ₽</span>
-            <span class="sw__weight">370 г</span>
+            <span class="sw__price">480 ₽</span>
+            <span class="sw__weight">370 г</span>
             <a class="sw__order" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Заказать №2 →</a>
           </div>
         </div>
@@ -195,10 +196,10 @@
         <div class="sw__info">
           <p class="sw__say"><span>Самый редкий</span></p>
           <h3 class="sw__name">Пастрами, сливочный крем, печёный перец</h3>
-          <p class="sw__desc">Домашняя пастрами из говядины, сливочный и горчичный соусы, печёный перец, кислый огурчик, красный лук, лук фри и винная карамель.</p>
+          <p class="sw__desc">Домашняя пастрами из говядины, сливочный и горчичный соусы, печёный перец, кислый огурчик, красный лук, лук фри и винная карамель.</p>
           <div class="sw__meta">
-            <span class="sw__price">650 ₽</span>
-            <span class="sw__weight">330 г</span>
+            <span class="sw__price">650 ₽</span>
+            <span class="sw__weight">330 г</span>
             <a class="sw__order" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Заказать №3 →</a>
           </div>
         </div>
@@ -209,10 +210,10 @@
         <div class="sw__info">
           <p class="sw__say"><span>Ценителям пикантного</span></p>
           <h3 class="sw__name">Креветки, крем том ям, шиитаке</h3>
-          <p class="sw__desc">Том ям теперь не только суп: креветки, шиитаке, кокосовые сливки и кинза — всё, за что вы любите том ям, в сэндвиче.</p>
+          <p class="sw__desc">Том ям теперь не только суп: креветки, шиитаке, кокосовые сливки и кинза — всё, за что вы любите том ям, в сэндвиче.</p>
           <div class="sw__meta">
-            <span class="sw__price">620 ₽</span>
-            <span class="sw__weight">340 г</span>
+            <span class="sw__price">620 ₽</span>
+            <span class="sw__weight">340 г</span>
             <a class="sw__order" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Заказать №4 →</a>
           </div>
         </div>
@@ -221,26 +222,26 @@
       </article>
       <article class="sw" data-i="4" aria-label="Сэндвич №5">
         <div class="sw__info">
-          <p class="sw__say"><span>Главный по курочке</span></p>
+          <p class="sw__say"><span>Главный по курочке</span></p>
           <h3 class="sw__name">Куриный шницель, чимичурри, азиатский соус</h3>
-          <p class="sw__desc">Хрустящий куриный шницель, салат, джем из томлёного лука и бекона, чимичурри и азиатские акценты.</p>
+          <p class="sw__desc">Хрустящий куриный шницель, салат, джем из томлёного лука и бекона, чимичурри и азиатские акценты.</p>
           <div class="sw__meta">
-            <span class="sw__price">450 ₽</span>
-            <span class="sw__weight">380 г</span>
+            <span class="sw__price">450 ₽</span>
+            <span class="sw__weight">380 г</span>
             <a class="sw__order" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Заказать №5 →</a>
           </div>
         </div>
         <figure class="sw__photo"><img src="assets/sandwich/s5.webp" alt="Сэндвич №5: куриный шницель, чимичурри, азиатский соус" loading="lazy" draggable="false"></figure>
-        <ul class="sw__tags" aria-label="Состав"><li style="--k:0">хрустящий шницель</li><li style="--k:1">чимичурри</li><li style="--k:2">джем из бекона</li><li style="--k:3">азиатский соус</li><li style="--k:4">томлёный лук</li><li style="--k:5">салат</li></ul>
+        <ul class="sw__tags" aria-label="Состав"><li style="--k:0">хрустящий шницель</li><li style="--k:1">чимичурри</li><li style="--k:2">джем из бекона</li><li style="--k:3">азиатский соус</li><li style="--k:4">томлёный лук</li><li style="--k:5">салат</li></ul>
       </article>
       <article class="sw" data-i="5" aria-label="Сэндвич №6">
         <div class="sw__info">
-          <p class="sw__say"><span>Для тех, кто по рыбке</span></p>
-          <h3 class="sw__name">Тунец и яичный салат</h3>
-          <p class="sw__desc">Наша версия классики: тунец и яичный салат с маринованным перчиком, винным соусом и свежим салатом.</p>
+          <p class="sw__say"><span>Для тех, кто по рыбке</span></p>
+          <h3 class="sw__name">Тунец и яичный салат</h3>
+          <p class="sw__desc">Наша версия классики: тунец и яичный салат с маринованным перчиком, винным соусом и свежим салатом.</p>
           <div class="sw__meta">
-            <span class="sw__price">640 ₽</span>
-            <span class="sw__weight">390 г</span>
+            <span class="sw__price">640 ₽</span>
+            <span class="sw__weight">390 г</span>
             <a class="sw__order" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Заказать №6 →</a>
           </div>
         </div>
@@ -249,12 +250,12 @@
       </article>
       <article class="sw" data-i="6" aria-label="Сэндвич №7">
         <div class="sw__info">
-          <p class="sw__say"><span>Постарайся не плакать</span><span class="badge badge--hot">hot · нью</span></p>
+          <p class="sw__say"><span>Постарайся не плакать</span><span class="badge badge--hot">hot · нью</span></p>
           <h3 class="sw__name">Пепперони, моцарелла, чеддер, чили-паста</h3>
-          <p class="sw__desc">Новинка: очень много пепперони, сырные палочки, чеддер, лучок и острый соус — врать не будем, его мы не жалели.</p>
+          <p class="sw__desc">Новинка: очень много пепперони, сырные палочки, чеддер, лучок и острый соус — врать не будем, его мы не жалели.</p>
           <div class="sw__meta">
-            <span class="sw__price">610 ₽</span>
-            <span class="sw__weight">430 г</span>
+            <span class="sw__price">610 ₽</span>
+            <span class="sw__weight">430 г</span>
             <a class="sw__order" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Заказать №7 →</a>
           </div>
         </div>
@@ -268,8 +269,8 @@
   </div>
 
   <div class="menu__foot">
-    <p>Не можешь выбрать? <span class="marker">Бери двойку</span> — визитную карточку нахлебников.</p>
-    <a class="ticket ticket--ink-solid" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener"><span class="ticket__main">Заказать в приложении</span><span class="ticket__stub">500 бонусов<br>за регистрацию</span></a>
+    <p>Не можешь выбрать? <span class="marker">Бери двойку</span> — визитную карточку нахлебников.</p>
+    <a class="ticket ticket--ink-solid" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener"><span class="ticket__main">Заказать в приложении</span><span class="ticket__stub">500 бонусов<br>за регистрацию</span></a>
   </div>
 </section>
 
@@ -278,29 +279,29 @@
   <svg class="tear-top tear-top--olive" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V26L36 38 64 16 98 34 126 20 160 42 190 22 222 36 250 14 284 31 313 19 346 44 375 25 407 37 436 17 468 33 497 21 530 46 558 27 590 39 620 15 652 30 681 23 713 43 742 24 774 35 803 18 835 32 864 20 896 45 925 28 957 38 986 16 1018 34 1047 22 1079 41 1108 25 1140 36 1169 17 1201 31 1230 21 1262 44 1291 27 1323 37 1352 18 1384 33 1440 22V60Z"/></svg>
   <header class="bar__head">
     <div class="bar__titlewrap">
-      <span class="kicker">бар · пиво в наличии · 18+</span>
+      <span class="kicker">бар · пиво в наличии · 18+</span>
       <h2 class="bar__title">Крафт&#8209;НАХ</h2>
-      <p class="bar__lede"><span class="plate plate--lime">Два крана</span> <span class="plate plate--olive">и девять банок и бутылок,</span><br><span class="plate plate--olive">про которые расскажут на баре.</span></p>
+      <p class="bar__lede"><span class="plate plate--lime">Два крана</span> <span class="plate plate--olive">и девять банок и бутылок,</span><br><span class="plate plate--olive">про которые расскажут на баре.</span></p>
     </div>
     <img class="bar__can" data-depth="0.4" src="assets/obj/can.webp" alt="" draggable="false">
-    <div class="bar__age" aria-label="Только для гостей старше 18 лет"><b>18+</b><span>покажи паспорт —<br>не обижайся</span></div>
+    <div class="bar__age" aria-label="Только для гостей старше 18 лет"><b>18+</b><span>покажи паспорт —<br>не обижайся</span></div>
   </header>
 
   <div class="taps">
-    <div class="taps__label"><span class="kicker">на кране · 0,4 л</span><p>Наведи на бокал</p></div>
+    <div class="taps__label"><span class="kicker">на кране · 0,4 л</span><p>Наведи на бокал</p></div>
     <button class="tap" type="button" data-name="Лагер-НАХ" style="--beer:#F2C230">
       <span class="tap__handle" aria-hidden="true"><i></i></span>
       <span class="glass" aria-hidden="true"><span class="glass__beer"></span><span class="glass__foam"></span></span>
-      <span class="tap__info"><b>Лагер&#8209;НАХ</b><em>светлый лагер</em><strong>250 ₽</strong></span>
+      <span class="tap__info"><b>Лагер&#8209;НАХ</b><em>светлый лагер</em><strong>250 ₽</strong></span>
       <span class="tap__pssh" aria-hidden="true">пшшш!</span>
     </button>
     <button class="tap" type="button" data-name="Вайс-НАХ" style="--beer:#F5D46A">
       <span class="tap__handle" aria-hidden="true"><i></i></span>
       <span class="glass glass--weizen" aria-hidden="true"><span class="glass__beer"></span><span class="glass__foam"></span></span>
-      <span class="tap__info"><b>Вайс&#8209;НАХ</b><em>пшеничное</em><strong>250 ₽</strong></span>
+      <span class="tap__info"><b>Вайс&#8209;НАХ</b><em>пшеничное</em><strong>250 ₽</strong></span>
       <span class="tap__pssh" aria-hidden="true">пшшш!</span>
     </button>
-    <div class="taps__combo"><span class="plate plate--lime">Пиво в комбо</span><br><span class="plate plate--ink">вместо колы</span><br><span class="plate plate--paper">+60 ₽</span></div>
+    <div class="taps__combo"><span class="plate plate--lime">Пиво в комбо</span><br><span class="plate plate--ink">вместо колы</span><br><span class="plate plate--paper">+60 ₽</span></div>
   </div>
 
   <div class="fridge-wrap">
@@ -323,8 +324,8 @@
           <div class="beer__body">
             <span class="beer__style">Pilsner · светлое</span>
             <h4 class="beer__name">«Богемский пильзнер»</h4>
-            <p class="beer__desc">Классический двухотварочный светлый лагер в чешском стиле, хорошо охмелённый жатецким хмелем.</p>
-            <div class="beer__meta"><span>0,45 л · банка</span><b>400 ₽</b></div>
+            <p class="beer__desc">Классический двухотварочный светлый лагер в чешском стиле, хорошо охмелённый жатецким хмелем.</p>
+            <div class="beer__meta"><span>0,45 л · банка</span><b>400 ₽</b></div>
           </div>
         </li>
         <li class="beer" data-cat="sour" style="--c:#E2483D;--k:1">
@@ -332,8 +333,8 @@
           <div class="beer__body">
             <span class="beer__style">Tomato Gose · кислое</span>
             <h4 class="beer__name">«Томатина»</h4>
-            <p class="beer__desc">Гозе по мотивам испанского праздника La Tomatina: розовая гималайская соль, индийский кориандр, томаты и горячий характер.</p>
-            <div class="beer__meta"><span>0,45 л · банка</span><b>550 ₽</b></div>
+            <p class="beer__desc">Гозе по мотивам испанского праздника La Tomatina: розовая гималайская соль, индийский кориандр, томаты и горячий характер.</p>
+            <div class="beer__meta"><span>0,45 л · банка</span><b>550 ₽</b></div>
           </div>
         </li>
         <li class="beer" data-cat="hop" style="--c:#F5913E;--k:2">
@@ -341,8 +342,8 @@
           <div class="beer__body">
             <span class="beer__style">Milkshake IPA · хмельное</span>
             <h4 class="beer__name">«Персик/маракуйя милкшейк»</h4>
-            <p class="beer__desc">Милкшейк IPA с молочным сахаром, соком персика и маракуйи.</p>
-            <div class="beer__meta"><span>0,45 л · банка</span><b>550 ₽</b></div>
+            <p class="beer__desc">Милкшейк IPA с молочным сахаром, соком персика и маракуйи.</p>
+            <div class="beer__meta"><span>0,45 л · банка</span><b>550 ₽</b></div>
           </div>
         </li>
         <li class="beer" data-cat="cider" style="--c:#C8D45A;--k:3">
@@ -350,8 +351,8 @@
           <div class="beer__body">
             <span class="beer__style">Сидр полусладкий · сидр</span>
             <h4 class="beer__name">Double Tree Груша</h4>
-            <p class="beer__desc">Непастеризованный сидр из грушевого сока: спелая жёлтая груша, сладость и фруктовая кислинка.</p>
-            <div class="beer__meta"><span>0,45 л · бутылка</span><b>400 ₽</b></div>
+            <p class="beer__desc">Непастеризованный сидр из грушевого сока: спелая жёлтая груша, сладость и фруктовая кислинка.</p>
+            <div class="beer__meta"><span>0,45 л · бутылка</span><b>400 ₽</b></div>
           </div>
         </li>
         <li class="beer" data-cat="cider" style="--c:#7DBA45;--k:4">
@@ -359,8 +360,8 @@
           <div class="beer__body">
             <span class="beer__style">Сидр полусухой · сидр</span>
             <h4 class="beer__name">Double Tree Зелёное яблоко</h4>
-            <p class="beer__desc">Непастеризованный сидр из сока зелёных яблок: яркий аромат и округлый вкус.</p>
-            <div class="beer__meta"><span>0,45 л · бутылка</span><b>400 ₽</b></div>
+            <p class="beer__desc">Непастеризованный сидр из сока зелёных яблок: яркий аромат и округлый вкус.</p>
+            <div class="beer__meta"><span>0,45 л · бутылка</span><b>400 ₽</b></div>
           </div>
         </li>
         <li class="beer" data-cat="sour" style="--c:#A3203A;--k:5">
@@ -368,8 +369,8 @@
           <div class="beer__body">
             <span class="beer__style">Fruit Beer · Kriek · кислое</span>
             <h4 class="beer__name">Gletcher Rouge de Fleur</h4>
-            <p class="beer__desc">Игристое вишнёвое пиво: свежая сладость, тонкая кислинка, аромат дикой вишни и косточек.</p>
-            <div class="beer__meta"><span>0,5 л · бутылка</span><b>450 ₽</b></div>
+            <p class="beer__desc">Игристое вишнёвое пиво: свежая сладость, тонкая кислинка, аромат дикой вишни и косточек.</p>
+            <div class="beer__meta"><span>0,5 л · бутылка</span><b>450 ₽</b></div>
           </div>
         </li>
         <li class="beer" data-cat="dark" style="--c:#6B3A1E;--k:6">
@@ -377,8 +378,8 @@
           <div class="beer__body">
             <span class="beer__style">Belgian Strong Dark Ale · тёмное</span>
             <h4 class="beer__name">Jaws Holy Dark</h4>
-            <p class="beer__desc">Карамель, луговые травы и специи. Сладость тёмного десерта с бельгийским шоколадом переходит в сухую пряность.</p>
-            <div class="beer__meta"><span>0,33 л · бутылка</span><b>400 ₽</b></div>
+            <p class="beer__desc">Карамель, луговые травы и специи. Сладость тёмного десерта с бельгийским шоколадом переходит в сухую пряность.</p>
+            <div class="beer__meta"><span>0,33 л · бутылка</span><b>400 ₽</b></div>
           </div>
         </li>
         <li class="beer" data-cat="sour" style="--c:#F0A3B8;--k:7">
@@ -386,8 +387,8 @@
           <div class="beer__body">
             <span class="beer__style">Berliner Weisse · кислое</span>
             <h4 class="beer__name">Multtown The Air Boys</h4>
-            <p class="beer__desc">Воздушный лёгкий берлинер, доброженный с соком грейпфрута и пюре ревеня.</p>
-            <div class="beer__meta"><span>0,45 л · банка</span><b>400 ₽</b></div>
+            <p class="beer__desc">Воздушный лёгкий берлинер, доброженный с соком грейпфрута и пюре ревеня.</p>
+            <div class="beer__meta"><span>0,45 л · банка</span><b>400 ₽</b></div>
           </div>
         </li>
         <li class="beer" data-cat="dark" style="--c:#2B1A12;--k:8">
@@ -395,8 +396,8 @@
           <div class="beer__body">
             <span class="beer__style">Oatmeal Stout · тёмное</span>
             <h4 class="beer__name">Ostrovica Oatmeal Stout</h4>
-            <p class="beer__desc">Жжёный солод, овсянка и лактоза — вкус молочного шоколада или кофе со сливками. Хмели Magnum и Fuggle.</p>
-            <div class="beer__meta"><span>0,45 л · банка</span><b>450 ₽</b></div>
+            <p class="beer__desc">Жжёный солод, овсянка и лактоза — вкус молочного шоколада или кофе со сливками. Хмели Magnum и Fuggle.</p>
+            <div class="beer__meta"><span>0,45 л · банка</span><b>450 ₽</b></div>
           </div>
         </li>
       </ul>
@@ -412,7 +413,7 @@
   <header class="combo__head">
     <span class="kicker kicker--ink">комбо · сэндвич + гарнир + напиток</span>
     <h2 class="combo__title" aria-label="К-к-к-комбо!"><span class="st">К-</span><span class="st">к-</span><span class="st">к-</span>комбо!</h2>
-    <p class="combo__lede"><span class="plate plate--ink">Собери своё —</span> <span class="plate plate--paper">цена посчитается сама.</span></p>
+    <p class="combo__lede"><span class="plate plate--ink">Собери своё —</span> <span class="plate plate--paper">цена посчитается сама.</span></p>
   </header>
 
   <div class="combo__grid">
@@ -448,7 +449,7 @@
       </div>
       <div class="receipt" id="receipt">
         <p class="r__brand">НАХЛЕБНИКИ</p>
-        <p class="r__small">Смоленск, Дзержинского, 4<br>чек № 0005-00 · <span id="rDate">--.--.---- --:--</span></p>
+        <p class="r__small">Смоленск, Дзержинского, 4<br>чек № 0005-00 · <span id="rDate">--.--.---- --:--</span></p>
         <p class="r__title">*** КОМБО НАХ ***</p>
         <ul class="r__lines">
           <li><span id="rSw">#2 Мортаделла</span><span>1 шт</span></li>
@@ -456,11 +457,11 @@
           <li><span id="rDrink">Кола</span><span>1 шт</span></li>
         </ul>
         <p class="r__total"><span>ИТОГО</span><b><span id="rTotal">730</span> ₽</b></p>
-        <p class="r__small r__note">Это расчёт, а не чек. Заказ — в приложении или на баре.</p>
+        <p class="r__small r__note">Это расчёт, а не чек. Заказ — в приложении или на баре.</p>
         <div class="r__barcode" aria-hidden="true"></div>
         <p class="r__thanks">СПАСИБО, НАХЛЕБНИК!</p>
       </div>
-      <a class="ticket ticket--ink-solid receipt__cta" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener"><span class="ticket__main">Заказать комбо</span><span class="ticket__stub">в приложении<br>нахлебника</span></a>
+      <a class="ticket ticket--ink-solid receipt__cta" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener"><span class="ticket__main">Заказать комбо</span><span class="ticket__stub">в приложении<br>нахлебника</span></a>
     </aside>
   </div>
 </section>
@@ -469,13 +470,13 @@
 <section class="lunch" id="lunch">
   <div class="lunch__in">
     <div class="lunch__copy">
-      <span class="kicker">по будням · 12:00–16:00</span>
-      <h2 class="lunch__title">Обед —<br>это святое</h2>
-      <p class="lunch__rule"><span class="plate plate--lime">Любой сэндвич = фильтр-кофе</span><br><span class="plate plate--paper">в подарок.</span></p>
+      <span class="kicker">по будням · 12:00–16:00</span>
+      <h2 class="lunch__title">Обед —<br>это святое</h2>
+      <p class="lunch__rule"><span class="plate plate--lime">Любой сэндвич = фильтр-кофе</span><br><span class="plate plate--paper">в подарок.</span></p>
       <ul class="lunch__no" aria-label="Что нельзя вместо кофе">
-        <li><s>чай</s></li><li><s>лимонад</s></li><li><s>пиво</s></li><li><s>«а можно мне…»</s></li><li class="yes">кофе ✓</li>
+        <li><s>чай</s></li><li><s>лимонад</s></li><li><s>пиво</s></li><li><s>«а можно мне…»</s></li><li class="yes">кофе ✓</li>
       </ul>
-      <p class="lunch__quote">Без «а можно мне вместо кофе что-то другое». Можно только кофе.</p>
+      <p class="lunch__quote">Без «а можно мне вместо кофе что-то другое». Можно только кофе.</p>
     </div>
     <div class="board" aria-live="polite">
       <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
@@ -491,28 +492,28 @@
 <section class="events" id="events">
   <svg class="tear-top tear-top--red" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V24L30 37 62 17 93 35 125 14 154 32 186 22 215 44 247 24 276 38 308 15 337 33 369 20 398 42 430 23 459 36 491 16 520 34 552 21 581 45 613 26 642 38 674 14 703 31 735 22 764 41 796 24 825 37 857 18 886 32 918 21 947 44 979 27 1008 37 1040 15 1069 33 1101 20 1130 42 1162 25 1191 36 1223 17 1252 34 1284 23 1313 40 1345 26 1374 35 1440 21V60Z"/></svg>
   <header class="ev__head">
-    <span class="kicker kicker--paper">трансляции · вечеринки · праздники, которых нет в календаре</span>
+    <span class="kicker kicker--paper">трансляции · вечеринки · праздники, которых нет в календаре</span>
     <h2 class="ev__title">События</h2>
-    <p class="ev__lede"><span class="plate plate--paper">Брони нет —</span> <span class="plate plate--ink">приходи пораньше.</span></p>
+    <p class="ev__lede"><span class="plate plate--paper">Брони нет —</span> <span class="plate plate--ink">приходи пораньше.</span></p>
   </header>
 
   <!-- сейчас идёт -->
   <div class="now">
     <div class="now__ticket">
       <div class="now__main">
-        <span class="now__live"><i></i>сейчас идёт · до 31 октября</span>
-        <h3 class="now__title">Собери 12 карточек —<br>забери Fujifilm instax mini 12</h3>
+        <span class="now__live"><i></i>сейчас идёт · до 31 октября</span>
+        <h3 class="now__title">Собери 12 карточек —<br>забери Fujifilm instax mini 12</h3>
         <ol class="now__rules">
-          <li>Берёшь любое комбо — получаешь случайную карточку.</li>
-          <li>Каждая карточка — бонус в студии автопортрета «Миллет». Выигрывает каждый.</li>
-          <li>Собрал все 12 — камера твоя. Меняйся, собирай, хвастайся.</li>
+          <li>Берёшь любое комбо — получаешь случайную карточку.</li>
+          <li>Каждая карточка — бонус в студии автопортрета «Миллет». Выигрывает каждый.</li>
+          <li>Собрал все 12 — камера твоя. Меняйся, собирай, хвастайся.</li>
         </ol>
-        <p class="now__wink">И не надо говорить, что тебе не хватает одной. Мы знаем. У всех так было.</p>
+        <p class="now__wink">И не надо говорить, что тебе не хватает одной. Мы знаем. У всех так было.</p>
       </div>
       <div class="now__stub">
         <span class="now__left" id="fujiLeft">--</span>
         <span class="now__unit" id="fujiUnit">дней осталось</span>
-        <span class="now__serial">№ 000012 · коллаб с «Миллет»</span>
+        <span class="now__serial">№ 000012 · коллаб с «Миллет»</span>
       </div>
     </div>
     <div class="fan" id="fan" aria-label="12 карточек коллекции" role="img"><img class="fcard" style="--i:0" src="assets/events/card01.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:1" src="assets/events/card02.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:2" src="assets/events/card03.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:3" src="assets/events/card04.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:4" src="assets/events/card05.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:5" src="assets/events/card06.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:6" src="assets/events/card07.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:7" src="assets/events/card08.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:8" src="assets/events/card09.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:9" src="assets/events/card10.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:10" src="assets/events/card11.webp" alt="" loading="lazy" draggable="false"><img class="fcard" style="--i:11" src="assets/events/card12.webp" alt="" loading="lazy" draggable="false"></div>
@@ -520,23 +521,23 @@
 
   <!-- всегда в программе -->
   <div class="always">
-    <h3 class="ev__h3">Всегда в программе</h3>
+    <h3 class="ev__h3">Всегда в программе</h3>
     <ul class="slots">
-      <li class="slot"><span class="slot__ico" aria-hidden="true">F1</span><b>Формула-1</b><span>гран-при на большом экране. Они жгут резину — мы жарим хлеб.</span></li>
-      <li class="slot"><span class="slot__ico" aria-hidden="true">ХК</span><b>Хоккей</b><span>болеем за родной «Славутич» в Betera-Экстралиге.</span></li>
-      <li class="slot"><span class="slot__ico" aria-hidden="true">ФК</span><b>Футбол</b><span>большие матчи и лондонские дерби. Сэндвичи есть, пиво в наличии.</span></li>
-      <li class="slot"><span class="slot__ico" aria-hidden="true">GG</span><b>Киберспорт</b><span>показываем The International и не только.</span></li>
+      <li class="slot"><span class="slot__ico" aria-hidden="true">F1</span><b>Формула-1</b><span>гран-при на большом экране. Они жгут резину — мы жарим хлеб.</span></li>
+      <li class="slot"><span class="slot__ico" aria-hidden="true">ХК</span><b>Хоккей</b><span>болеем за родной «Славутич» в Betera-Экстралиге.</span></li>
+      <li class="slot"><span class="slot__ico" aria-hidden="true">ФК</span><b>Футбол</b><span>большие матчи и лондонские дерби. Сэндвичи есть, пиво в наличии.</span></li>
+      <li class="slot"><span class="slot__ico" aria-hidden="true">GG</span><b>Киберспорт</b><span>показываем The International и не только.</span></li>
     </ul>
   </div>
 
   <!-- праздники, которых нет в календаре -->
   <div class="holidays">
-    <h3 class="ev__h3">Праздники, которых нет в календаре</h3>
+    <h3 class="ev__h3">Праздники, которых нет в календаре</h3>
     <div class="cal-row">
-      <article class="cal"><span class="cal__rings" aria-hidden="true"></span><span class="cal__month">июля</span><b class="cal__day">16</b><span class="cal__name">День Агутина</span><span class="cal__perk">−5,7% на всё — ведь 57 не за горами</span></article>
-      <article class="cal"><span class="cal__rings" aria-hidden="true"></span><span class="cal__month">сентября</span><b class="cal__day">1</b><span class="cal__name">Снова в школу</span><span class="cal__perk">школьная пицца + кола за 390 ₽</span></article>
-      <article class="cal"><span class="cal__rings" aria-hidden="true"></span><span class="cal__month">сентября</span><b class="cal__day">3</b><span class="cal__name">Шуфутинов день</span><span class="cal__perk">−15%, если придёшь с бумажным календарём</span></article>
-      <article class="cal cal--next"><span class="cal__rings" aria-hidden="true"></span><span class="cal__month">скоро</span><b class="cal__day">?</b><span class="cal__name">Следующий повод</span><span class="cal__perk">узнаешь первым в Telegram</span></article>
+      <article class="cal"><span class="cal__rings" aria-hidden="true"></span><span class="cal__month">июля</span><b class="cal__day">16</b><span class="cal__name">День Агутина</span><span class="cal__perk">−5,7% на всё — ведь 57 не за горами</span></article>
+      <article class="cal"><span class="cal__rings" aria-hidden="true"></span><span class="cal__month">сентября</span><b class="cal__day">1</b><span class="cal__name">Снова в школу</span><span class="cal__perk">школьная пицца + кола за 390 ₽</span></article>
+      <article class="cal"><span class="cal__rings" aria-hidden="true"></span><span class="cal__month">сентября</span><b class="cal__day">3</b><span class="cal__name">Шуфутинов день</span><span class="cal__perk">−15%, если придёшь с бумажным календарём</span></article>
+      <article class="cal cal--next"><span class="cal__rings" aria-hidden="true"></span><span class="cal__month">скоро</span><b class="cal__day">?</b><span class="cal__name">Следующий повод</span><span class="cal__perk">узнаешь первым в Telegram</span></article>
     </div>
   </div>
 
@@ -544,44 +545,44 @@
   <div class="archive">
     <h3 class="ev__h3 ev__h3--pad">Архив афиш</h3>
     <div class="wall" aria-label="Афиши прошедших событий">
-      <div class="wall__row"><div class="wall__track"><figure class="poster"><span class="tape"></span><img src="assets/events/p_f1.webp" alt="Афиша: Формула-1 · Гран-при Азербайджана" loading="lazy" draggable="false"><figcaption><b>25.09</b>Формула-1 · Гран-при Азербайджана</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera1.webp" alt="Афиша: Славутич — Металлург" loading="lazy" draggable="false"><figcaption><b>09.09</b>Славутич — Металлург</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_derby.webp" alt="Афиша: Челси — Арсенал" loading="lazy" draggable="false"><figcaption><b>—</b>Челси — Арсенал</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_hangover.webp" alt="Афиша: Hangover Session × Цифровая практика" loading="lazy" draggable="false"><figcaption><b>16.08</b>Hangover Session × Цифровая практика</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera3.webp" alt="Афиша: Славутич — Авиатор" loading="lazy" draggable="false"><figcaption><b>16.09</b>Славутич — Авиатор</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_f1.webp" alt="Афиша: Формула-1 · Гран-при Азербайджана" loading="lazy" draggable="false"><figcaption><b>25.09</b>Формула-1 · Гран-при Азербайджана</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera1.webp" alt="Афиша: Славутич — Металлург" loading="lazy" draggable="false"><figcaption><b>09.09</b>Славутич — Металлург</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_derby.webp" alt="Афиша: Челси — Арсенал" loading="lazy" draggable="false"><figcaption><b>—</b>Челси — Арсенал</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_hangover.webp" alt="Афиша: Hangover Session × Цифровая практика" loading="lazy" draggable="false"><figcaption><b>16.08</b>Hangover Session × Цифровая практика</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera3.webp" alt="Афиша: Славутич — Авиатор" loading="lazy" draggable="false"><figcaption><b>16.09</b>Славутич — Авиатор</figcaption></figure></div></div>
-      <div class="wall__row wall__row--rev"><div class="wall__track"><figure class="poster"><span class="tape"></span><img src="assets/events/p_kodak.webp" alt="Афиша: Розыгрыш Kodak Charmera" loading="lazy" draggable="false"><figcaption><b>17.08</b>Розыгрыш Kodak Charmera</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_salei.webp" alt="Афиша: Финал Кубка Салея" loading="lazy" draggable="false"><figcaption><b>—</b>Финал Кубка Салея</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_school.webp" alt="Афиша: Школьная пицца + кола" loading="lazy" draggable="false"><figcaption><b>01.09</b>Школьная пицца + кола</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera2.webp" alt="Афиша: Славутич — Металлург" loading="lazy" draggable="false"><figcaption><b>11.09</b>Славутич — Металлург</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_fuji.webp" alt="Афиша: 12 карточек «Миллет»" loading="lazy" draggable="false"><figcaption><b>до 31.10</b>12 карточек «Миллет»</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_kodak.webp" alt="Афиша: Розыгрыш Kodak Charmera" loading="lazy" draggable="false"><figcaption><b>17.08</b>Розыгрыш Kodak Charmera</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_salei.webp" alt="Афиша: Финал Кубка Салея" loading="lazy" draggable="false"><figcaption><b>—</b>Финал Кубка Салея</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_school.webp" alt="Афиша: Школьная пицца + кола" loading="lazy" draggable="false"><figcaption><b>01.09</b>Школьная пицца + кола</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera2.webp" alt="Афиша: Славутич — Металлург" loading="lazy" draggable="false"><figcaption><b>11.09</b>Славутич — Металлург</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_fuji.webp" alt="Афиша: 12 карточек «Миллет»" loading="lazy" draggable="false"><figcaption><b>до 31.10</b>12 карточек «Миллет»</figcaption></figure></div></div>
+      <div class="wall__row"><div class="wall__track"><figure class="poster"><span class="tape"></span><img src="assets/events/p_f1.webp" alt="Афиша: Формула-1 · Гран-при Азербайджана" loading="lazy" draggable="false"><figcaption><b>25.09</b>Формула-1 · Гран-при Азербайджана</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera1.webp" alt="Афиша: Славутич — Металлург" loading="lazy" draggable="false"><figcaption><b>09.09</b>Славутич — Металлург</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_derby.webp" alt="Афиша: Челси — Арсенал" loading="lazy" draggable="false"><figcaption><b>—</b>Челси — Арсенал</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_hangover.webp" alt="Афиша: Hangover Session × Цифровая практика" loading="lazy" draggable="false"><figcaption><b>16.08</b>Hangover Session × Цифровая практика</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera3.webp" alt="Афиша: Славутич — Авиатор" loading="lazy" draggable="false"><figcaption><b>16.09</b>Славутич — Авиатор</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_f1.webp" alt="Афиша: Формула-1 · Гран-при Азербайджана" loading="lazy" draggable="false"><figcaption><b>25.09</b>Формула-1 · Гран-при Азербайджана</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera1.webp" alt="Афиша: Славутич — Металлург" loading="lazy" draggable="false"><figcaption><b>09.09</b>Славутич — Металлург</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_derby.webp" alt="Афиша: Челси — Арсенал" loading="lazy" draggable="false"><figcaption><b>—</b>Челси — Арсенал</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_hangover.webp" alt="Афиша: Hangover Session × Цифровая практика" loading="lazy" draggable="false"><figcaption><b>16.08</b>Hangover Session × Цифровая практика</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera3.webp" alt="Афиша: Славутич — Авиатор" loading="lazy" draggable="false"><figcaption><b>16.09</b>Славутич — Авиатор</figcaption></figure></div></div>
+      <div class="wall__row wall__row--rev"><div class="wall__track"><figure class="poster"><span class="tape"></span><img src="assets/events/p_kodak.webp" alt="Афиша: Розыгрыш Kodak Charmera" loading="lazy" draggable="false"><figcaption><b>17.08</b>Розыгрыш Kodak Charmera</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_salei.webp" alt="Афиша: Финал Кубка Салея" loading="lazy" draggable="false"><figcaption><b>—</b>Финал Кубка Салея</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_school.webp" alt="Афиша: Школьная пицца + кола" loading="lazy" draggable="false"><figcaption><b>01.09</b>Школьная пицца + кола</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera2.webp" alt="Афиша: Славутич — Металлург" loading="lazy" draggable="false"><figcaption><b>11.09</b>Славутич — Металлург</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_fuji.webp" alt="Афиша: 12 карточек «Миллет»" loading="lazy" draggable="false"><figcaption><b>до 31.10</b>12 карточек «Миллет»</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_kodak.webp" alt="Афиша: Розыгрыш Kodak Charmera" loading="lazy" draggable="false"><figcaption><b>17.08</b>Розыгрыш Kodak Charmera</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_salei.webp" alt="Афиша: Финал Кубка Салея" loading="lazy" draggable="false"><figcaption><b>—</b>Финал Кубка Салея</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_school.webp" alt="Афиша: Школьная пицца + кола" loading="lazy" draggable="false"><figcaption><b>01.09</b>Школьная пицца + кола</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_betera2.webp" alt="Афиша: Славутич — Металлург" loading="lazy" draggable="false"><figcaption><b>11.09</b>Славутич — Металлург</figcaption></figure><figure class="poster"><span class="tape"></span><img src="assets/events/p_fuji.webp" alt="Афиша: 12 карточек «Миллет»" loading="lazy" draggable="false"><figcaption><b>до 31.10</b>12 карточек «Миллет»</figcaption></figure></div></div>
     </div>
   </div>
 
   <div class="ev__cta">
-    <a class="ticket ticket--paper-red" href="https://t.me/nahlebniki_sm" target="_blank" rel="noopener"><span class="ticket__main">Анонсы в Telegram</span><span class="ticket__stub">@nahlebniki_sm<br>подписывайся</span></a>
-    <p>Расписание трансляций и вечеринок появляется там раньше всего.</p>
+    <a class="ticket ticket--paper-red" href="https://t.me/nahlebniki_sm" target="_blank" rel="noopener"><span class="ticket__main">Анонсы в Telegram</span><span class="ticket__stub">@nahlebniki_sm<br>подписывайся</span></a>
+    <p>Расписание трансляций и вечеринок появляется там раньше всего.</p>
   </div>
 </section>
 
 <!-- ===== ИГРА «5 СЕКУНД» ===== -->
 <section class="arcade" id="game">
   <header class="ar__head">
-    <span class="kicker">игра · тренажёр перед походом в бар</span>
+    <span class="kicker">игра · тренажёр перед походом в бар</span>
     <h2 class="ar__title">Поймай <span class="ar__goal">05.00</span></h2>
-    <p class="ar__lede"><span class="plate plate--lime">5 секунд и никаких «если».</span><br><span class="plate plate--ink">Попадаешь — мы угощаем. Не попадаешь — ты платишь.</span></p>
+    <p class="ar__lede"><span class="plate plate--lime">5 секунд и никаких «если».</span><br><span class="plate plate--ink">Попадаешь — мы угощаем. Не попадаешь — ты платишь.</span></p>
   </header>
 
   <div class="ar__grid">
     <ol class="ar__how">
-      <li><b>01</b><span>Делаешь заказ на баре.</span></li>
-      <li><b>02</b><span>Жмёшь кнопку на автомате и считаешь про себя.</span></li>
-      <li><b>03</b><span>Остановил ровно на <em>05.00</em> — заказ за наш счёт.</span></li>
-      <li class="ar__note">Здесь — тренировка. Бесплатно бывает только у автомата в зале на Дзержинского, 4. Победителей мы публикуем в Telegram.</li>
+      <li><b>01</b><span>Делаешь заказ на баре.</span></li>
+      <li><b>02</b><span>Жмёшь кнопку на автомате и считаешь про себя.</span></li>
+      <li><b>03</b><span>Остановил ровно на <em>05.00</em> — заказ за наш счёт.</span></li>
+      <li class="ar__note">Здесь — тренировка. Бесплатно бывает только у автомата в зале на Дзержинского, 4. Победителей мы публикуем в Telegram.</li>
     </ol>
 
     <div class="cab" id="cab">
       <div class="cab__marquee"><span>НАХЛЕБНИКАНАТОР</span><i aria-hidden="true"></i></div>
       <div class="cab__body">
         <div class="cab__screen" aria-live="polite">
-          <div class="cab__row"><span id="arMode">режим: как в зале</span><span id="arTry">попытка 0</span></div>
+          <div class="cab__row"><span id="arMode">режим: как в зале</span><span id="arTry">попытка 0</span></div>
           <div class="seg"><span class="seg__ghost" aria-hidden="true">88.88</span><span class="seg__val" id="arTime">00.00</span></div>
           <div class="cab__msg" id="arMsg">ЖМИ КНОПКУ</div>
         </div>
         <div class="cab__panel">
           <div class="modes" role="group" aria-label="Режим игры">
-            <button type="button" data-mode="hall" aria-pressed="true">как в зале</button>
+            <button type="button" data-mode="hall" aria-pressed="true">как в зале</button>
             <button type="button" data-mode="train" aria-pressed="false">тренировка</button>
           </div>
           <button class="bigbtn" id="arBtn" type="button" aria-label="Старт"><span>старт</span></button>
@@ -591,7 +592,7 @@
     </div>
 
     <aside class="ar__stats">
-      <div class="best"><span class="kicker">твой лучший</span><b id="arBest">—</b><span id="arBestNote">ещё не играл</span></div>
+      <div class="best"><span class="kicker">твой лучший</span><b id="arBest">—</b><span id="arBestNote">ещё не играл</span></div>
       <div class="hist"><span class="kicker">последние попытки</span><ol id="arHist"><li class="empty">пока пусто</li></ol></div>
       <button class="share" id="arShare" type="button" disabled>Поделиться результатом</button>
       <p class="share__done" id="arShared" aria-live="polite"></p>
@@ -603,9 +604,9 @@
 <section class="app" id="app" data-light>
   <svg class="tear-top" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V27L29 39 60 18 91 34 122 15 151 31 183 21 212 45 244 26 273 37 305 16 334 32 366 19 395 43 427 24 456 35 488 17 517 33 549 22 578 46 610 25 639 37 671 15 700 30 732 23 761 42 793 25 822 36 854 19 883 31 915 20 944 44 976 28 1005 36 1037 16 1066 32 1098 21 1127 41 1159 24 1188 37 1220 18 1249 33 1281 22 1310 39 1342 27 1371 34 1440 20V60Z"/></svg>
   <header class="app__head">
-    <span class="kicker kicker--ink">приложение нахлебника · iPhone и Android</span>
+    <span class="kicker kicker--ink">приложение нахлебника · iPhone и Android</span>
     <h2 class="app__title">Прими свою судьбу&nbsp;—<br><span class="app__hl">стань нахлебником</span></h2>
-    <p class="app__lede"><span class="plate plate--ink">500 бонусов</span> <span class="plate plate--lime">сразу за регистрацию.</span></p>
+    <p class="app__lede"><span class="plate plate--ink">500 бонусов</span> <span class="plate plate--lime">сразу за регистрацию.</span></p>
   </header>
 
   <div class="app__grid">
@@ -618,7 +619,7 @@
     </div>
 
     <div class="levels-wrap">
-      <h3 class="app__h3">Кешбэк растёт вместе с тобой</h3>
+      <h3 class="app__h3">Кешбэк растёт вместе с тобой</h3>
       <div class="levels" role="radiogroup" aria-label="Уровень кешбэка">
         <button class="lvl" type="button" role="radio" aria-checked="false" data-pct="3" style="--h:38%"><span class="lvl__pct">3%</span><span class="lvl__name">Крошка</span></button>
         <button class="lvl" type="button" role="radio" aria-checked="false" data-pct="5" style="--h:62%"><span class="lvl__pct">5%</span><span class="lvl__name">Булочка</span></button>
@@ -629,9 +630,9 @@
         <input class="calc__range" id="calcSum" type="range" min="300" max="3000" step="50" value="1000">
         <div class="calc__res">
           <div><span>вернётся бонусами</span><b id="calcBack">+70</b></div>
-          <div><span>можно оплатить бонусами</span><b id="calcHalf">до 500 ₽</b></div>
+          <div><span>можно оплатить бонусами</span><b id="calcHalf">до 500 ₽</b></div>
         </div>
-        <p class="calc__note">Бонусами можно оплатить до 50% заказа. Как перейти на следующий уровень — написано в приложении.</p>
+        <p class="calc__note">Бонусами можно оплатить до 50% заказа. Как перейти на следующий уровень — написано в приложении.</p>
       </div>
     </div>
   </div>
@@ -640,10 +641,10 @@
     <div class="pass">
       <div class="pass__main">
         <span class="pass__k">билет нахлебника · № <span id="passNo">000483</span></span>
-        <b class="pass__title">Наведи камеру —<br>скачай приложение</b>
+        <b class="pass__title">Наведи камеру —<br>скачай приложение</b>
         <div class="pass__btns">
-          <a href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Для iPhone</a>
-          <a href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Для Android</a>
+          <a href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Для iPhone</a>
+          <a href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">Для Android</a>
         </div>
       </div>
       <div class="pass__stub"><div class="pass__qr" role="img" aria-label="QR-код на rbcn.mobi/get/nal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" shape-rendering="crispEdges"><path stroke="#0E0E0E" d="M0 0.5h7m4 0h3m4 0h7M0 1.5h1m5 0h1m2 0h1m3 0h4m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h5m1 0h2m2 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m3 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h5m3 0h1m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m2 0h5m2 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m3 0h1m1 0h1M0 8.5h1m1 0h5m3 0h1m2 0h3m2 0h5M0 9.5h3m1 0h2m1 0h1m4 0h1m3 0h1m2 0h1m3 0h1M0 10.5h3m3 0h2m2 0h1m1 0h1m1 0h3m1 0h1m1 0h2m1 0h2M0 11.5h1m1 0h4m8 0h1m1 0h1m7 0h1M0 12.5h1m1 0h5m2 0h1m2 0h3m2 0h4m1 0h3M0 13.5h4m10 0h1m1 0h1m2 0h1m1 0h1m1 0h1M0 14.5h1m1 0h2m1 0h4m2 0h2m1 0h3m1 0h4m1 0h2M0 15.5h1m1 0h1m1 0h2m1 0h3m1 0h1m3 0h3m1 0h2m3 0h1M0 16.5h1m2 0h2m1 0h8m2 0h5m1 0h1M8 17.5h2m2 0h2m1 0h2m3 0h2M0 18.5h7m2 0h1m2 0h3m1 0h1m1 0h1m1 0h1m1 0h3M0 19.5h1m5 0h1m1 0h2m4 0h1m1 0h1m3 0h2m1 0h2M0 20.5h1m1 0h3m1 0h1m1 0h1m2 0h10m1 0h1M0 21.5h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h4m1 0h5M0 22.5h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m4 0h2m1 0h1M0 23.5h1m5 0h1m2 0h2m1 0h1m2 0h3m1 0h3m2 0h1M0 24.5h7m1 0h1m1 0h1m1 0h4m3 0h6"/></svg>
@@ -656,26 +657,26 @@
 <section class="delivery" id="delivery" data-light>
   <header class="dl__head">
     <span class="kicker kicker--ink">доставка · самовывоз · заказ заранее</span>
-    <h2 class="dl__title">Был дождик?<br><span>Не отговорка.</span></h2>
-    <p class="dl__lede">Сэндвичи едут к тебе двумя путями. Или забери сам — к твоему приходу всё будет готово.</p>
+    <h2 class="dl__title">Был дождик?<br><span>Не отговорка.</span></h2>
+    <p class="dl__lede">Сэндвичи едут к тебе двумя путями. Или забери сам — к твоему приходу всё будет готово.</p>
   </header>
   <div class="routes">
     <a class="route route--app" href="https://rbcn.mobi/get/nal" target="_blank" rel="noopener">
       <span class="route__n">путь 01</span>
       <b class="route__t">Приложение нахлебника</b>
-      <ul class="route__list"><li>доставка ко времени</li><li>самовывоз: выбери, когда зайдёшь</li><li>кешбэк до 7% и 500 бонусов на старт</li></ul>
+      <ul class="route__list"><li>доставка ко времени</li><li>самовывоз: выбери, когда зайдёшь</li><li>кешбэк до 7% и 500 бонусов на старт</li></ul>
       <span class="route__go">Скачать →</span>
     </a>
     <a class="route route--ya" href="https://eda.yandex.ru/restaurant/naxlebniki" target="_blank" rel="noopener">
       <span class="route__n">путь 02</span>
       <b class="route__t">Яндекс Еда</b>
-      <ul class="route__list"><li>если приложение ставить лень</li><li>привычная оплата и курьеры</li><li>цены там немного выше</li></ul>
+      <ul class="route__list"><li>если приложение ставить лень</li><li>привычная оплата и курьеры</li><li>цены там немного выше</li></ul>
       <span class="route__go">Открыть →</span>
     </a>
     <div class="route route--self">
       <span class="route__n">путь 03</span>
-      <b class="route__t">Сам за сэндвичем</b>
-      <p>Закажи в приложении, укажи время — к твоему приходу всё будет готово. Или просто приходи: получишь биппер, он запищит, когда заказ готов.</p>
+      <b class="route__t">Сам за сэндвичем</b>
+      <p>Закажи в приложении, укажи время — к твоему приходу всё будет готово. Или просто приходи: получишь биппер, он запищит, когда заказ готов.</p>
       <span class="beeper" aria-hidden="true"><i></i><i></i><i></i></span>
     </div>
   </div>
@@ -687,24 +688,23 @@
   <div class="ct__grid">
     <div class="ct__info">
       <span class="kicker">где нас найти</span>
-      <h2 class="ct__addr">Дзержинского,<br><span>4</span></h2>
+      <h2 class="ct__addr">Дзержинского,&nbsp;4</h2>
       <p class="ct__city">Смоленск · центр</p>
       <dl class="ct__list">
-        <div><dt>Часы</dt><dd>Каждый день 12:00 — 23:00 <span class="ct__now" id="ctNow"></span></dd></div>
+        <div><dt>Часы</dt><dd>Каждый день 12:00 — 23:00 <span class="ct__now" id="ctNow"></span></dd></div>
         <div><dt>Телефон</dt><dd><a href="tel:+79290834000" class="ct__phone">+7 (929) 083-40-00</a> <button type="button" class="ct__copy" data-copy="+7 929 083-40-00">скопировать</button></dd></div>
         <div><dt>Бронь</dt><dd>Брони нет. Совсем. Приходи пораньше.</dd></div>
-        <div><dt>С собакой</dt><dd>Можно.</dd></div>
+        <div><dt>С собакой</dt><dd>Можно.</dd></div>
       </dl>
       <div class="ct__social">
         <a href="https://t.me/nahlebniki_sm" target="_blank" rel="noopener"><b>TG</b><span>анонсы первыми</span></a>
         <a href="https://vk.com/club232301704" target="_blank" rel="noopener"><b>VK</b><span>сообщество</span></a>
-        <a href="https://www.instagram.com/nahlebniki_smolensk/" target="_blank" rel="noopener"><b>IG</b><span>мемы и сэндвичи</span></a>
+        <a href="https://www.instagram.com/nahlebniki_smolensk/" target="_blank" rel="noopener"><b>IG</b><span>мемы и сэндвичи</span></a>
       </div>
     </div>
     <div class="ct__map">
       <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
-      <iframe title="Карта: Смоленск, улица Дзержинского, 4" src="https://yandex.ru/map-widget/v1/?ll=32.047997%2C54.778397&z=16&pt=32.047997%2C54.778397%2Cpm2gnm&l=map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-      <div class="ct__pin" aria-hidden="true">НАХ</div>
+      <div class="map" id="map" role="img" aria-label="Карта: Смоленск, улица Дзержинского, 4"></div>
       <a class="ct__route" href="https://yandex.ru/maps/?rtext=~54.778397%2C32.047997&rtt=auto" target="_blank" rel="noopener">Построить маршрут →</a>
     </div>
   </div>
@@ -717,13 +717,13 @@
     <nav class="foot__nav" aria-label="Разделы сайта">
       <a href="#menu">Сэндвичи</a><a href="#bar">Крафт-НАХ</a><a href="#combo">Комбо</a><a href="#lunch">Обед</a><a href="#events">События</a><a href="#game">Поймай 05.00</a><a href="#app">Приложение</a><a href="#delivery">Доставка</a><a href="#contacts">Контакты</a>
     </nav>
-    <button class="foot__up" type="button" id="toTop"><span>Наверх</span><b>за 00.50</b></button>
+    <button class="foot__up" type="button" id="toTop"><span>Наверх</span><b>за 00.50</b></button>
   </div>
   <div class="foot__word" aria-hidden="true">НА<span class="x">Х</span>ЛЕБНИКИ</div>
   <div class="foot__bottom">
-    <span>© 2026 Нахлебники · первый сэндвич-шоп в Смоленске</span>
-    <span class="foot__legal"><a href="#">Политика конфиденциальности</a> · реквизиты — уточняются</span>
-    <span>Сэндвич — твой лучший друг ✱</span>
+    <span>© 2026 Нахлебники · первый сэндвич-шоп в Смоленске</span>
+    <span class="foot__legal"><a href="#">Политика конфиденциальности</a> · реквизиты — уточняются</span>
+    <span>Сэндвич — твой лучший друг ✱</span>
   </div>
 </footer>
 
@@ -734,13 +734,14 @@
     <button class="game__close" id="gameClose" type="button" aria-label="Закрыть">✕</button>
     <span class="kicker">тест реакции нахлебника</span>
     <h2 id="gameTitle">Поймай 05.00</h2>
-    <p class="game__rules">Жми «Старт», затем «Стоп», когда на табло будет ровно пять секунд. После первой секунды цифры исчезнут — как на автомате в зале.</p>
+    <p class="game__rules">Жми «Старт», затем «Стоп», когда на табло будет ровно пять секунд. После первой секунды цифры исчезнут — как на автомате в зале.</p>
     <div class="game__screen"><span id="gameTime">00.00</span></div>
     <button class="game__btn" id="gameBtn" type="button">Старт</button>
     <p class="game__res" id="gameRes" aria-live="polite"></p>
   </div>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="js/main.js"></script>
 </body>
 </html>
