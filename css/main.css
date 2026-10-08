@@ -1,3 +1,6 @@
+/* Oswald — свой хостинг, чтобы цифры загрузки не мигали запасным шрифтом */
+@font-face{font-family:"Oswald";font-style:normal;font-weight:200 700;font-display:swap;src:url("../assets/fonts/oswald-cyrillic.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Oswald";font-style:normal;font-weight:200 700;font-display:swap;src:url("../assets/fonts/oswald-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 /* =========================================================
    НАХЛЕБНИКИ — ПК-версия. Загрузка + первый экран + рамка.
    Комбинация: ДНК (бумага, рваные края, плашки, Bebas)
@@ -62,6 +65,10 @@ button{font:inherit;color:inherit}
 @keyframes blink{50%{opacity:0}}
 .loader__frame{position:relative;align-self:center;justify-self:center;width:min(78vw,1180px);aspect-ratio:2.35/1;display:grid;place-items:center;color:inherit}
 .loader__frame .crop{width:46px;height:46px}
+.loader:not(.fonts-ok) .loader__time,.loader:not(.fonts-ok) .loader__goal{opacity:0;animation:fontfallback 0s 2.5s forwards}
+@keyframes fontfallback{to{opacity:1}}   /* страховка: если скрипт задержался, цифры всё равно появятся */
+.loader.fonts-ok .loader__time{animation:digitsin .25s ease-out}
+@keyframes digitsin{from{opacity:0}to{opacity:1}}
 .loader__time{font:700 clamp(150px,23vw,360px)/.86 var(--display);letter-spacing:-.01em;color:var(--lime);font-variant-numeric:tabular-nums;transform:translateY(4%);transition:color .2s}
 .loader.is-hit .loader__time{color:var(--ink);animation:stamp .5s var(--ease-pop)}
 @keyframes stamp{0%{transform:translateY(4%) scale(1.18)}100%{transform:translateY(4%) scale(1)}}

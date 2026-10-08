@@ -39,10 +39,13 @@
     });
   }
 
+  // цифры загрузки появляются только с нужным шрифтом (не дольше 1,5 с ожидания)
+  const fontsReady = Promise.race([document.fonts.load('700 100px Oswald', '0123456789.'), new Promise(r => setTimeout(r, 1500))])
+    .then(() => loader.classList.add('fonts-ok'));
   async function intro() {
-    if (seen || reduce) { await Promise.race([pageLoaded, maxWait]); lt.textContent = '05.00'; setTimeout(reveal, 250); return; }
+    if (seen || reduce) { await fontsReady; await Promise.race([pageLoaded, maxWait]); lt.textContent = '05.00'; setTimeout(reveal, 250); return; }
     // ждём шрифт таймера, чтобы цифры не мигнули запасным шрифтом (не дольше 700 мс)
-    await Promise.race([document.fonts.load('700 100px Oswald'), new Promise(r => setTimeout(r, 700))]);
+    await fontsReady;
     await runTimer();
     await Promise.race([pageLoaded, maxWait]);
     if (finished) return;
@@ -377,7 +380,8 @@
 
   /* ---------- карта: метка-логотип привязана к координатам бара ---------- */
   const mapEl = $('#map');
-  if (mapEl && window.L) {
+  const initMap = () => {
+    if (!mapEl || !window.L || mapEl._inited) return; mapEl._inited = true;
     const pos = [54.778397, 32.047997];
     const map = L.map(mapEl, { center: pos, zoom: 16, scrollWheelZoom: false, zoomControl: true, attributionControl: true });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -386,7 +390,9 @@
     }).addTo(map);
     L.marker(pos, { icon: L.divIcon({ className: 'nah-icon', html: '<span class="nah-pin">НА<span class="x">Х</span></span>', iconSize: [0, 0] }), keyboard: false, title: 'Нахлебники, Дзержинского, 4' }).addTo(map);
     mapEl.addEventListener('click', () => map.scrollWheelZoom.enable(), { once: true });
-  }
+  };
+  // библиотека карты грузится параллельно и не задерживает загрузку страницы
+  if (window.L) initMap(); else { const lj = $('#leafletJs'); lj && lj.addEventListener('load', initMap); }
 
 
   /* ---------- крупные заголовки ужимаются, если не влезают в ширину ---------- */
