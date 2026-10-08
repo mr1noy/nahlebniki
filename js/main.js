@@ -21,6 +21,7 @@
     body.classList.add('is-ready');
     try { sessionStorage.setItem('nah-intro', '1'); } catch (e) {}
     setTimeout(() => loader.remove(), 1100);
+    setTimeout(showCookie, 2700);   // после уезда загрузки и всей анимации первого экрана
   }
 
   function runTimer() {
@@ -49,6 +50,19 @@
     verdict.hidden = false;
     setTimeout(reveal, 1250);
   }
+
+  /* ---------- баннер cookie ---------- */
+  function showCookie() {
+    const c = document.getElementById('cookie'); if (!c) return;
+    let ok = false; try { ok = localStorage.getItem('nah-cookie') === '1'; } catch (e) {}
+    if (ok) return;
+    c.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => c.classList.add('is-in')));
+    document.getElementById('cookieOk').addEventListener('click', () => {
+      try { localStorage.setItem('nah-cookie', '1'); } catch (e) {}
+      c.classList.add('is-out'); setTimeout(() => (c.hidden = true), 320);
+    }, { once: true });
+  }
+
   loader.addEventListener('click', reveal);
   addEventListener('keydown', e => { if (!finished && (e.key === 'Escape' || e.key === 'Enter')) reveal(); });
   intro();

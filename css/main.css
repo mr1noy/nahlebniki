@@ -1203,3 +1203,29 @@ p,li,dd,figcaption,.sw__desc,.beer__desc,.route p,.lunch__quote,.now__wink,.calc
   .board__cup{display:none}
   .slots{grid-template-columns:1fr}
 }
+
+/* =========================================================
+   БАННЕР COOKIE — появляется после загрузки и анимации первого экрана
+   ========================================================= */
+.cookie{position:fixed;z-index:80;right:calc(var(--edge) + 34px);bottom:calc(var(--edge) + 62px);width:340px;background:var(--ink);color:var(--paper);
+  border:2px solid var(--lime);box-shadow:6px 6px 0 var(--lime);padding:22px 22px 20px;display:grid;gap:10px;
+  opacity:0;translate:0 24px;rotate:1.5deg;transition:opacity .45s var(--ease-out),translate .6s var(--ease-pop)}
+.cookie.is-in{opacity:1;translate:0 0}
+.cookie.is-out{opacity:0;translate:0 24px;transition-duration:.3s}
+.cookie[hidden]{display:none}
+.cookie__tag{position:absolute;left:18px;top:-14px;background:var(--lime);color:var(--ink);font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:6px 8px;border:2px solid var(--ink)}
+.cookie__title{margin:4px 0 0;font:700 26px/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+.cookie__text{margin:0;font-size:14px;line-height:1.45;color:#c9c9c0}
+.cookie__text a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+.cookie__wink{margin:0;font:500 11.5px/1.4 var(--mono);color:#8a8a82}
+.cookie__ok{all:unset;cursor:pointer;justify-self:start;margin-top:4px;background:var(--lime);color:var(--ink);font:700 20px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;padding:11px 22px 9px;box-shadow:3px 3px 0 var(--paper);transition:transform .2s,box-shadow .2s}
+.cookie__ok:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--paper)}
+.cookie__ok:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+@media (max-width:760px){
+  .cookie{left:12px;right:76px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:auto;padding:18px 16px 16px;rotate:0deg;box-shadow:4px 4px 0 var(--lime)}
+  .cookie__title{font-size:21px}
+  .cookie__text{font-size:13px}
+  .cookie__wink{display:none}
+  .cookie__ok{font-size:18px;padding:10px 18px 8px}
+}
+@media (prefers-reduced-motion:reduce){.cookie{transition:none}}
