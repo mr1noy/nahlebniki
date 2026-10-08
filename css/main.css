@@ -515,7 +515,7 @@ body.is-ready .hero__hint{opacity:.9}
 .board__state .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--red);margin-right:8px;animation:blink 1s steps(2) infinite;vertical-align:1px}
 .board__time{font:700 clamp(84px,8.6vw,140px)/.9 var(--display);letter-spacing:-.01em;color:var(--lime);font-variant-numeric:tabular-nums;text-shadow:0 0 30px rgba(219,255,0,.25)}
 .board__sub{font:500 13px/1.5 var(--mono);letter-spacing:.06em;color:#9b9b92;max-width:34ch}
-.board__cup{position:absolute;right:-40px;bottom:-56px;width:240px;rotate:8deg;filter:drop-shadow(0 20px 24px rgba(0,0,0,.6));animation:float 7s ease-in-out infinite alternate;--r0:6deg;--r1:12deg}
+.board__cup{position:absolute;right:-34px;bottom:-78px;width:160px;image-rendering:auto;rotate:8deg;filter:drop-shadow(0 20px 24px rgba(0,0,0,.6));animation:float 7s ease-in-out infinite alternate;--r0:6deg;--r1:12deg}
 
 /* =========================================================
    СОБЫТИЯ — красный, фестивальный
@@ -1047,7 +1047,7 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
   .lunch__no li{font-size:17px}
   .board{padding:28px 20px 30px;min-height:0}
   .board__time{font-size:21vw}
-  .board__cup{width:120px;right:-14px;bottom:-30px}
+  .board__cup{width:84px;right:-8px;bottom:-46px}
 
   /* ---------- события ---------- */
   .events{padding-bottom:70px}
