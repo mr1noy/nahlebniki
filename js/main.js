@@ -7,8 +7,9 @@
 
   /* ---------- ЗАГРУЗКА ---------- */
   const loader = $('#loader'), lt = $('#loaderTime'), verdict = $('#loaderVerdict');
-  let seen = false;
-  try { seen = sessionStorage.getItem('nah-intro') === '1'; } catch (e) {}
+  // пока идёт показ клиенту — загрузка проигрывается при каждом заходе.
+  // Чтобы показывать её один раз за визит, верните чтение sessionStorage 'nah-intro'.
+  const seen = false;
   const pageLoaded = new Promise(r => (document.readyState === 'complete' ? r() : addEventListener('load', r, { once: true })));
   const maxWait = new Promise(r => setTimeout(r, 4500));
   let finished = false;
@@ -372,6 +373,18 @@
     L.marker(pos, { icon: L.divIcon({ className: 'nah-icon', html: '<span class="nah-pin">НА<span class="x">Х</span></span>', iconSize: [0, 0] }), keyboard: false, title: 'Нахлебники, Дзержинского, 4' }).addTo(map);
     mapEl.addEventListener('click', () => map.scrollWheelZoom.enable(), { once: true });
   }
+
+
+  /* ---------- крупные заголовки ужимаются, если не влезают в ширину ---------- */
+  const fitSel = '.menu__title,.bar__title,.combo__title,.lunch__title,.ev__title,.ar__title,.app__title,.dl__title,.ct__addr,.fridge-title,.ev__h3,.app__h3,.foot__word';
+  const fitTitles = () => document.querySelectorAll(fitSel).forEach(el => {
+    el.style.fontSize = '';
+    const box = el.parentElement.clientWidth - parseFloat(getComputedStyle(el.parentElement).paddingLeft) - parseFloat(getComputedStyle(el.parentElement).paddingRight);
+    let fs = parseFloat(getComputedStyle(el).fontSize), guard = 0;
+    const wide = () => Math.max(el.scrollWidth, ...[...el.querySelectorAll('*')].map(c => c.getBoundingClientRect().right - el.getBoundingClientRect().left)) > box + 1;
+    while (wide() && guard++ < 40) { fs *= .96; el.style.fontSize = fs + 'px'; }
+  });
+  document.fonts.ready.then(fitTitles); addEventListener('resize', fitTitles);
 
   /* появление блоков при скролле */
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: .25 });

@@ -885,6 +885,7 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
 
 @media (max-width:760px){
   :root{--edge:0px}
+  html,body{overflow-x:clip;max-width:100%}
   body{font-size:15px}
   .plate{font-size:clamp(20px,6vw,26px)}
   .kicker{font-size:10.5px;letter-spacing:.12em}
@@ -897,12 +898,13 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
     background:rgba(14,14,14,.92);backdrop-filter:blur(8px);color:var(--paper)!important;border-bottom:1px solid #222}
   .hud__logo{order:0;font-size:26px;margin-right:auto;color:var(--lime)!important}
   .hud__order{order:1;padding:9px 12px!important;font-size:11px;background:var(--lime)!important;color:var(--ink)!important}
-  .hud__burger{all:unset;order:2;cursor:pointer;display:flex;align-items:center;gap:8px;padding:8px 6px 8px 10px;position:relative}
-  .hud__burger span{display:block;width:22px;height:2px;background:var(--paper);position:absolute;left:10px;transition:transform .3s,top .3s}
-  .hud__burger span:nth-child(1){top:13px}.hud__burger span:nth-child(2){top:21px}
-  .hud__burger em{font-style:normal;font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding-left:30px;color:var(--paper)}
-  .nav-open .hud__burger span:nth-child(1){top:17px;transform:rotate(45deg)}
-  .nav-open .hud__burger span:nth-child(2){top:17px;transform:rotate(-45deg)}
+  .hud__burger{all:unset;order:2;cursor:pointer;display:inline-flex;align-items:center;gap:9px;height:36px;padding:0 4px 0 8px}
+  .hud__burger-ico{position:relative;display:block;width:22px;height:10px;flex:none}
+  .hud__burger-ico span{position:absolute;left:0;width:100%;height:2px;background:var(--paper);transition:transform .3s,top .3s}
+  .hud__burger-ico span:nth-child(1){top:0}.hud__burger-ico span:nth-child(2){top:8px}
+  .hud__burger em{font-style:normal;font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--paper)}
+  .nav-open .hud__burger-ico span:nth-child(1){top:4px;transform:rotate(45deg)}
+  .nav-open .hud__burger-ico span:nth-child(2){top:4px;transform:rotate(-45deg)}
   .hud__bottom{display:contents}
   .hud__play{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;padding:0;justify-content:center;flex-direction:column;gap:2px;
     background:var(--lime)!important;color:var(--ink)!important;border:2px solid var(--ink)!important;box-shadow:3px 3px 0 var(--ink);font-size:0}
@@ -958,7 +960,7 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
   .menu__head{padding:72px 4vw 28px;gap:14px}
   .menu__title{font-size:21vw;flex-direction:column;gap:10px}
   .menu__sticker{font-size:.34em;margin:0;align-self:flex-start;rotate:-4deg}
-  .menu__lede .plate{font-size:20px}
+  .menu__lede .plate{font-size:clamp(16px,5vw,20px)}
   .menu__scroll{height:calc(var(--n) * 70svh + 100svh)}
   .menu__stage{height:100svh;min-height:600px}
   .menu__num{left:4vw;top:66px;font-size:30vw;-webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink)}
@@ -1005,7 +1007,9 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
   .fridge-wrap{padding:0 4vw}
   .fridge-head{flex-direction:column;align-items:flex-start;gap:14px}
   .fridge-title{font-size:15vw}
-  .filters{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:6px;scrollbar-width:none}
+  .fridge-head{align-items:stretch}
+  .filters{flex-wrap:nowrap;overflow-x:auto;width:auto;min-width:0;max-width:100%;padding:2px 2px 8px;margin-right:-4vw;padding-right:4vw;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-snap-type:x proximity}
+  .filters button{scroll-snap-align:start}
   .filters::-webkit-scrollbar{display:none}
   .filters button{font-size:17px;white-space:nowrap;flex:none}
   .fridge{padding:26px 14px 6px;border-width:6px}
@@ -1023,12 +1027,14 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
   .combo__lede .plate{font-size:19px}
   .combo__grid{grid-template-columns:1fr;gap:34px;padding:0 4vw}
   .receipt{padding-bottom:40px}
-  .receipt__cta{margin-right:62px;width:auto}
+  .receipt__cta{justify-self:start;width:calc(100% - 64px);margin:0}
+  .receipt__cta .ticket__main{white-space:normal;font-size:20px}
   .builder{gap:24px}
   .step legend{font-size:26px}
   .opts--3{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
   .opts--3 .opt__card img{aspect-ratio:1}
-  .opts--3 .opt__t{font-size:14px;padding:8px 8px 7px;flex-wrap:wrap;gap:4px}
+  .opts--3 .opt__t{font-size:clamp(11px,3.6vw,14px);padding:8px 6px 7px;flex-wrap:wrap;gap:4px;min-width:0;overflow-wrap:anywhere}
+  .opt{min-width:0}
   .opt__card--row{grid-template-columns:62px 1fr}
   .opt__card--row img,.mini-glass{height:62px;width:62px}
   .mini-glass i{width:26px;height:40px}
@@ -1080,7 +1086,8 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
   .archive{padding-bottom:50px}
   .poster{width:170px}
   .poster figcaption{font-size:13px}
-  .ev__cta{flex-direction:column;align-items:flex-start;gap:16px;padding:0 4vw}
+  .ev__cta{flex-direction:column;align-items:stretch;gap:16px;padding:0 4vw}
+  .ev__cta .ticket__main{font-size:19px;padding:0 14px;white-space:normal}
 
   /* ---------- игра ---------- */
   .arcade{padding:72px 4vw 80px}
@@ -1138,7 +1145,7 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
   /* ---------- доставка ---------- */
   .delivery{padding:72px 4vw 80px}
   .dl__head{margin-bottom:30px;gap:14px}
-  .dl__title{font-size:16vw}
+  .dl__title{font-size:13.6vw}
   .dl__title span{-webkit-text-stroke:2px var(--ink)}
   .dl__lede{font-size:15px}
   .routes{grid-template-columns:1fr;gap:18px}
@@ -1158,7 +1165,7 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
   .ct__social a{padding:12px 10px}
   .ct__social b{font-size:28px}
   .ct__social span{font-size:9px}
-  .ct__map{min-height:380px}
+  .ct__map{min-height:380px;overflow:hidden}
   .ct__route{font-size:17px;right:10px;bottom:10px}
 
   /* ---------- подвал ---------- */
@@ -1178,3 +1185,16 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
 /* аккуратный перенос строк: без висячих слов */
 h1,h2,h3,h4,.plate,.sw__name,.beer__name,.now__title,.route__t,.pass__title,.cal__name,.slot b{text-wrap:balance}
 p,li,dd,figcaption,.sw__desc,.beer__desc,.route p,.lunch__quote,.now__wink,.calc__note,.board__sub{text-wrap:pretty}
+
+/* совсем узкие телефоны (≤ 350px) */
+@media (max-width:350px){
+  .plates .plate:nth-of-type(3){font-size:14px}
+  .taps__combo{rotate:0deg}
+  .taps__combo .plate{font-size:16px}
+  .opt__card--row{grid-template-columns:52px 1fr}
+  .opt__card--row img,.mini-glass{width:52px;height:52px}
+  .opt__t{font-size:15px;padding:10px 8px 9px}
+  .opt__t small{display:none}
+  .board__cup{display:none}
+  .slots{grid-template-columns:1fr}
+}
