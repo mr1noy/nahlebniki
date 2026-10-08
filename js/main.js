@@ -376,9 +376,10 @@
 
 
   /* ---------- крупные заголовки ужимаются, если не влезают в ширину ---------- */
-  const fitSel = '.menu__title,.bar__title,.combo__title,.lunch__title,.ev__title,.ar__title,.app__title,.dl__title,.ct__addr,.fridge-title,.ev__h3,.app__h3,.foot__word';
+  const fitSel = '.menu__title,.bar__title,.combo__title,.lunch__title,.ev__title,.ar__title,.app__title,.dl__title,.ct__addr,.fridge-title,.ev__h3,.app__h3';
   const fitTitles = () => document.querySelectorAll(fitSel).forEach(el => {
     el.style.fontSize = '';
+    if (!matchMedia('(max-width:760px)').matches) return;   // на ПК размеры заданы вёрсткой
     const box = el.parentElement.clientWidth - parseFloat(getComputedStyle(el.parentElement).paddingLeft) - parseFloat(getComputedStyle(el.parentElement).paddingRight);
     let fs = parseFloat(getComputedStyle(el).fontSize), guard = 0;
     const wide = () => Math.max(el.scrollWidth, ...[...el.querySelectorAll('*')].map(c => c.getBoundingClientRect().right - el.getBoundingClientRect().left)) > box + 1;

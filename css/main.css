@@ -828,6 +828,7 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
 .foot{position:relative;background:var(--lime);color:var(--ink);padding:9vh 6vw 3vh;overflow:hidden}
 .foot__top{display:flex;justify-content:space-between;align-items:flex-start;gap:30px}
 .foot__nav{display:flex;flex-wrap:nowrap;gap:0 clamp(12px,1.5vw,26px);max-width:none}
+.foot__nav a i{display:none}
 .foot__nav a{white-space:nowrap;font:700 clamp(14px,1.32vw,22px)/1 var(--display);text-transform:uppercase;letter-spacing:-.01em;position:relative}
 .foot__nav a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:3px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease-out)}
 .foot__nav a:hover::after{transform:scaleX(1)}
@@ -836,7 +837,7 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
 .foot__up b{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--paper)}
 .foot__up:hover{transform:translateY(-3px)}
 .foot__up:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
-.foot__word{margin:6vh -1vw 0;font:700 17vw/.8 var(--display);letter-spacing:-.035em;white-space:nowrap;text-align:center}
+.foot__word{margin:6vh 0 0;font:700 14.6vw/.8 var(--display);letter-spacing:-.035em;white-space:nowrap;text-align:center}
 .foot__word .x::after{height:.07em;left:-4%;right:-4%}
 .foot__bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:3vh;padding-top:16px;border-top:2px solid var(--ink);font:500 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase}
 .foot__legal a{text-decoration:underline;text-underline-offset:3px}
@@ -952,7 +953,8 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
   .ticket__stub{font-size:9.5px;padding:0 12px}
   .ticket{-webkit-mask:radial-gradient(circle 8px at calc(100% - var(--stub,104px)) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 8px at calc(100% - var(--stub,104px)) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
               mask:radial-gradient(circle 8px at calc(100% - var(--stub,104px)) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 8px at calc(100% - var(--stub,104px)) 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
-  .marquee{bottom:14px;padding:7px 0 5px}
+  .hero{isolation:auto;overflow:clip}
+  .marquee{bottom:14px;padding:7px 0 5px;z-index:20}
   .marquee__track{font-size:19px;gap:14px}
   .marquee__track i{font-size:17px}
 
@@ -1169,9 +1171,14 @@ a.route:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px
   /* ---------- подвал ---------- */
   .foot{padding:56px 4vw calc(100px + env(safe-area-inset-bottom,0px))}
   .foot__top{flex-direction:column;gap:22px}
-  .foot__nav{max-width:none;gap:6px 18px;flex-wrap:wrap}
-  .foot__nav a{font-size:21px}
-  .foot__word{margin-top:34px;font-size:17vw}
+  .foot__top{flex-direction:row;align-items:flex-start;justify-content:space-between;gap:16px}
+  .foot__nav{display:grid;grid-template-columns:1fr;gap:0;flex:1;max-width:none;border-top:2px solid var(--ink)}
+  .foot__nav a{display:flex;align-items:baseline;gap:12px;font-size:22px;line-height:1;padding:9px 0 8px;border-bottom:1px solid rgba(14,14,14,.25)}
+  .foot__nav a i{display:inline;font:500 10px/1 var(--mono);font-style:normal;letter-spacing:.08em;opacity:.55;min-width:18px}
+  .foot__nav a::after{display:none}
+  .foot__up{flex:none;padding:12px 12px 10px}
+  .foot__up span{font-size:20px}
+  .foot__word{margin:30px 0 0;font-size:16.2vw}
   .foot__bottom{flex-direction:column;gap:8px;font-size:10.5px}
 
   /* ---------- игра поверх страницы ---------- */
