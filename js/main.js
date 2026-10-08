@@ -85,10 +85,10 @@
     .then(r => r.json())
     .then(d => {
       const t = Math.round(d.current.temperature_2m);
-      temp.innerHTML = `за окном <b>${t > 0 ? '+' : ''}${t}°</b>`;
+      temp.textContent = `${t > 0 ? '+' : ''}${t}°`;
       note.textContent = (lines.find(([a, b]) => t >= a && t < b) || lines[3])[2];
     })
-    .catch(() => { temp.textContent = 'Смоленск'; note.textContent = 'самое время для сэндвича'; });
+    .catch(() => { temp.textContent = '—'; note.textContent = 'самое время для сэндвича'; });
 
   /* ---------- HUD: что на кране (сменяется) ---------- */
   const taps = ['Лагер-НАХ', 'Вайс-НАХ'], tapEl = $('#hudTap'); let ti = 0;
